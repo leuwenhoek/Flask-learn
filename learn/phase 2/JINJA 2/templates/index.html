@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report card</title>
+</head>
+<body>
+    <h1>Hi, {{ name }} 👋.</h1>
+    <h3>Your marks in your opt subjects:</h3>
+    <ul>
+    {% for subject, marks in subjects.items() %}
+        <li>{{ subject }} : {{ marks }}</li>
+    {% endfor %}
+    </ul>
+    <br>
+    {% if is_topper %}
+    <p><strong>Well done..</strong></p>
+    {% else %}
+    <p><strong>work hard..</strong></p>
+    {% endif%}
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+project - login page
+
+step 1 : accept username
+step 2 : accept password
+step 4 : redirect to a welcome page
+step 5 : log out
