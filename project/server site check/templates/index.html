@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+
+<body>
+    <h1>Register yourself</h1>
+    <form action="/register" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required><br>
+        <label for="DOB">Date of birth</label>
+        <input type="date" name="DOB" id="DOB" required><br>
+        <label for="Email">Email</label>
+        <input type="email" name="email" id="email" required><br>
+        <label for="sports">Sports</label>
+        <select name="sports" id="sports" required>
+            <option disabled selected>sports</option>
+            <option>Cricket</option>
+            <option>badminton</option>
+            <option>football</option>
+        </select><br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+
+</html>
