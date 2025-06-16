@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+
+{% block content %}
+    <h2>Thankyou {{user}}</h2>
+    <p>for your feedback </p>
+    <blockquote>{{ message }}</blockquote>
+    <a href="/feedback">Feedback</a>
+{% endblock %}
