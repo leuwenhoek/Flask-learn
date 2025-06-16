@@ -1,13 +1,18 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template,redirect,url_for
 
 app=Flask(__name__)
 
-@app.route("/",methods=["GET","POST"])
+
+@app.route("/")
+def send():
+    return redirect(url_for("feedback"))
+
+@app.route("/feedback",methods=["GET","POST"])
 def feedback():
     if request.method == "POST":
         name = request.form.get("username")
-        message = request.form.get("message")
+        message_ = request.form.get("message")
 
-        return render_template("thankyou.html", user=name)
+        return render_template("thankyou.html", user=name, message=message_)
     
     return render_template("feedback.html")
