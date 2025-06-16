@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title%}My feedback form{% endblock %}
+    </title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            background-color: antiquewhite;
+        }
+        header, footer{
+            background-color: #333;
+            padding: 10px;
+            color: white;
+        }
+        nav a{
+            margin: 0 10px;
+        }
+        main{
+            background-color: aliceblue;
+            padding:20px;
+            margin-top: 20px;
+            border-radius: 5%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Feedback page</h1>
+        <nav>
+            <a href="/feedback"></a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2025 CODINGWISE SITE
+        </p>
+    </footer>
+    
+</body>
+</html>
