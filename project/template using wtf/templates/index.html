@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passport</title>
+</head>
+<body>
+    <h1>Enter your details for your passport request</h1>
+    <form method="POST" action="/" enctype="multipart/form-data">
+        {{ form.csrf_token  }}
+        <p>{{  form.name.label  }} {{  form.name()  }}</p>
+        <p>{{  form.aadhar.label }} {{  form.aadhar() }}</p>
+        <p>{{  form.age.label }} {{  form.age() }}</p>
+        <p>{{  form.password.label }} {{  form.password() }}</p>
+        <p>{{  form.salary.label }} {{  form.salary() }}</p>
+        <p>{{  form.gender.label }} {{  form.gender() }}</p>
+        <p>{{  form.location.label }} {{  form.location() }}</p>
+        <p>{{  form.info.label }} {{  form.info() }}</p>
+        <p>{{  form.photo.label }} {{  form.photo() }}</p>
+        <p>{{  form.feedback.label }} {{  form.feedback() }}</p>
+        <p><input type="submit" value="Submit"></p>
+        </form>
+</body>
+</html>

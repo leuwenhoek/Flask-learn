@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verify</title>
+</head>
+<body>
+    <h1>Verify your details</h1>
+    <ul>
+        <li>Name: {{ data.name }}</li>
+        <li>Aadhar: {{ data.aadhar }}</li>
+        <li>Age: {{ data.age }}</li>
+        <li>Password: {{ data.password }}</li>
+        <li>Salary: {{ data.salary }}</li>
+        <li>Gender: {{ data.gender }}</li>
+        <li>Location: {{ data.location }}</li>
+        <li>Inform via Email: {{ data.info }}</li>
+        <li>Photo filename: {{ data.photo }}</li>
+        <li>Feedback: {{ data.feedback }}</li>
+    </ul>
+    <form action="{{ url_for('done') }}">
+        <button type="submit">Confirm</button>
+    </form>
+</body>
+</html>
