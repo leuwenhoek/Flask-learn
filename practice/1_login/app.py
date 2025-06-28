@@ -1,8 +1,13 @@
 from flask import Flask,session,request,url_for,redirect, render_template
 import form
+import time
 
 app = Flask(__name__)
 app.secret_key = "secret"
+
+def timer(sec):
+    print(f"Redirecting {sec}")
+    time.sleep(sec)
 
 @app.route("/",methods=["GET","POST"])
 def main():
@@ -45,6 +50,7 @@ def veri():
 
 @app.route("/success")
 def created():
+    timer(5)
     return f"<h1>Successfully created your email account...<h1>"
 
 if __name__ == '__main__':
