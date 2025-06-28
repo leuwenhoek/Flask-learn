@@ -9,7 +9,7 @@ def render():
     forms = form.PassportForms()
     if forms.validate_on_submit():
          session["form_data"] = {
-            "name" : forms.name.data,
+            'name' : forms.name.data,
             'aadhar' : forms.aadhar.data,
             'age' : forms.age.data,
             'password' : forms.password.data,
