@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verify</title>
+</head>
+<body>
+    <form action="/verify" method="post">
+        <h1>verify your details...</h1>
+        <p>First Name : {{ data.fname }}</p>
+        <p>Last name : {{ data.lname }}</p>
+        <p>mobile number : {{ data.mob }}</p>
+        <p>do you want premium features : {{ data.is_paid }}</p>
+        <p>Email : {{ data.email }}</p>
+        <p>Password : {{ data.password }}</p>
+        <input type="submit" value="Submit">
+        <input type="submit" value="Change">
+    </form>
+</body>
+</html>

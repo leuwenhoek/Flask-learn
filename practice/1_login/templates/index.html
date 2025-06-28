@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creating email account...</title>
+</head>
+<body>
+    <h1>Creating an Email account</h1>
+    <form action="/create" method="post">
+        {{ form.csrf_token }}
+    <p>{{ form.fname.label }} {{ form.fname() }}</p>
+    <p>{{ form.lname.label }} {{ form.lname() }}</p>
+    <p>{{ form.mob.label }} {{ form.mob() }}</p>
+    <p>{{ form.is_paid.label }} {{ form.is_paid() }}</p>
+    <p>{{ form.email.label }} {{ form.email() }}</p>
+    <p>{{ form.password.label }} {{ form.password() }}</p>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
