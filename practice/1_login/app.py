@@ -34,7 +34,18 @@ def create_email():
 @app.route("/verify", methods=["GET","POST"])
 def veri():
     data = session.get("data")
+    ptr = request.form.get("opt")
+    if request.method == "POST":
+        if ptr == "Submit":
+            return redirect(url_for("created"))
+        else:
+            return redirect(url_for("create_email"))
+        
     return render_template("verify.html",data=data)
+
+@app.route("/success")
+def created():
+    return f"<h1>Successfully created your email account...<h1>"
 
 if __name__ == '__main__':
     app.run()
