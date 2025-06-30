@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adding users</title>
+</head>
+<body>
+    <form action="/add" method="post">
+        <label for="name">Name : </label>
+        <input type="name" name="name" id="name"><br>
+        <br><label for="email">Email : </label>
+        <input type="email" name="email" id="email">
+        <input type="submit" value="Add user">
+    </form>
+
+    <h2>User list</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user[1] }} - {{ user[2] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
