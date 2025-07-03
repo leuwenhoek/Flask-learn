@@ -31,7 +31,7 @@ def initialize_buyerdb():
     conn.close()
 
 def initialize_orderdb():
-    path2 = os.path.join("project","placing order","database.db")
+    path2 = os.path.join("project","placing order","order.db")
     conn = sqlite3.connect(path2)
     cur = conn.cursor()
     cur.execute('''
@@ -50,6 +50,16 @@ def insert(val1, val2, val3, val4, val5, val6):
     curr.execute(
         "INSERT INTO buyers (name, store, email, mobile_number, username, password) VALUES (?, ?, ?, ?, ?, ?)",
         (val1, val2, val3, val4, val5, val6)
+    )
+    conn.commit()
+    conn.close()
+
+def save_order(username,items):
+    conn = sqlite3.connect(path("order.db"))
+    curr = conn.cursor()
+    curr.execute(
+        "INSERT INTO buyers (username,books) VALUES (?, ?)",
+        (username,items)
     )
     conn.commit()
     conn.close()
@@ -116,12 +126,19 @@ def wel():
         selected_books = []
         selected_books = request.form.getlist("books")
         session["books"] = selected_books 
+        session["cost"] = len(selected_books) * 500
         return redirect("/buy")
     return render_template("home.html",name=name,store=store,email=email,username=username)
 
 @app.route("/buy", methods=["POST", "GET"])
-def buy():
-    return render_template("complete_order.html")
+def cart():
+    selected_books_ = session.get("books",[])
+    if request.method == "POST":
+        save_order(session.get("username"),items=selected_books_)
+    cost = session.get("cost",0)
+    cost_ = len(selected_books_)*500
+    session["cost"] = cost_
+    return render_template("complete_order.html",selected_books=selected_books_, cost = cost_ )
 if __name__ == "__main__":
     initialize_buyerdb()
     initialize_orderdb()
