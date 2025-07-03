@@ -121,20 +121,7 @@ def wel():
 
 @app.route("/buy", methods=["POST", "GET"])
 def buy():
-    selected_books = session.get("books", [])
-    username = session.get("username")
-    if selected_books and username:
-        
-        conn = sqlite3.connect(path("order.db"))
-        cur = conn.cursor()
-        # Store books as a comma-separated string
-        cur.execute(
-            "INSERT INTO orders (username, books) VALUES (?, ?)",
-            (username, ', '.join(selected_books))
-        )
-        conn.commit()
-        conn.close()
-    return render_template("complete_order.html", selected_books=selected_books)
+    return render_template("complete_order.html")
 if __name__ == "__main__":
     initialize_buyerdb()
     initialize_orderdb()
