@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>place your order</title>
+</head>
+
+<body>
+    <h1>Hlo, {{ name }} 👋</h1>
+    <h5>Good to see you what do you want to buy, today....</h5><br>
+
+    <h3>currectly books available in our store..</h3>
+
+    <form action="/buy" method="get">
+        <ol>
+            <li>
+                <label><b><i>Rich Dad Poor Dad</i></b></label>
+                <input type="checkbox" name="books" value="Rich Dad Poor Dad"><br>
+            </li>
+            <li>
+                <label><b><i>The Psychology of Money</i></b></label>
+                <input type="checkbox" name="books" value="The Psychology of Money"><br>
+            </li>
+            <li>
+                <label><b><i>Harry Potter And The Chamber Of Secrets</i></b></label>
+                <input type="checkbox" name="books" value="Harry Potter And The Chamber Of Secrets"><br>
+            </li>
+            <li>
+                <label><b><i>Tim Cook: The Genius Who Took Apple to the next level</i></b></label>
+                <input type="checkbox" name="books" value="Tim Cook"><br>
+            </li>
+            <li>
+                <label><b><i>Atomic Habits</i></b></label>
+                <input type="checkbox" name="books" value="Atomic Habits"><br>
+            </li>
+        </ol>
+        <input type="submit" value="Place order">
+    </form>
+</body>
+
+</html>

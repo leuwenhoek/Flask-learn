@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <h1>Create buyer account....</h1>
+    <form method="post" action="/signup">
+        <label for="name">Name : </label>
+        <input type="text" name="name" id="name" required placeholder="Enter your name"><br>
+        <label for="store">store's name : </label>
+        <input type="text" name="store" id="store" required placeholder="Enter your store's name"><br>
+        <label for="email">email : </label>
+        <input type="email" name="email" id="email" required placeholder="Enter your email"><br>
+        <label for="mobile">Mobile no. : </label>
+        <input type="number" name="mobile" id="mobile" required placeholder="Enter your nobile number"><br>
+        <label for="username">Username : </label>
+        <input type="tel" name="username" id="username" required placeholder="Set a username"><br>
+        <label for="password">Password : </label>
+        <input type="password" name="password" id="password" required placeholder="Set a password"><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

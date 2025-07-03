@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login with your buyer acconut...</h1>
+    <form action="/login" method="post">
+        <label for="name">Username : </label>
+        <input type="text" name="name" id="name"><br>
+        <label for="password">Password : </label>
+        <input type="password" name="password" id="password">
+        <button type="button" onclick="togglePassword()">Show</button><br>
+        <input type="submit" value="Login">
+        <p>{{ status }}</p>
+
+        <p>Create a buyer account, <a href="/signup">Sign up</a></p>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <script>
+function togglePassword() {
+    var pwd = document.getElementById("password");
+    if (pwd.type === "password") {
+        pwd.type = "text";
+    } else {
+        pwd.type = "password";
+    }
+}
+</script>
+</body>
+
+
+</html>
