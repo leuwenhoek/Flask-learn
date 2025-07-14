@@ -18,7 +18,7 @@ def initialize_buyerdb():
         CREATE TABLE IF NOT EXISTS buyers(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            store TEXT NOT NULL,
+            address TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             mobile_number INTEGER NOT NULL,
             username TEXT UNIQUE not null,
@@ -37,8 +37,9 @@ def initialize_orderdb():
     cur.execute('''
         CREATE TABLE IF NOT EXISTS orders(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            books TEXT NOT NULL
+            username_ TEXT NOT NULL,
+            books_ TEXT NOT NULL,
+            message_ TEXT
         )
     ''')
     conn.commit()
@@ -48,18 +49,19 @@ def insert(val1, val2, val3, val4, val5, val6):
     conn = sqlite3.connect(path("database.db"))
     curr = conn.cursor()
     curr.execute(
-        "INSERT INTO buyers (name, store, email, mobile_number, username, password) VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO buyers (name, address, email, mobile_number, username, password) VALUES (?, ?, ?, ?, ?, ?)",
         (val1, val2, val3, val4, val5, val6)
     )
     conn.commit()
     conn.close()
 
-def save_order(username,items):
+def save_order(username, items, message):
     conn = sqlite3.connect(path("order.db"))
     curr = conn.cursor()
+    book_str = ",".join(items)
     curr.execute(
-        "INSERT INTO buyers (username,books) VALUES (?, ?)",
-        (username,items)
+        "INSERT INTO orders (username_, books_, message_) VALUES (?, ?, ?)",
+        (username, book_str, message)
     )
     conn.commit()
     conn.close()
@@ -76,12 +78,12 @@ def fetch(username,password):
 
 def get_session_data():
     name = session.get("name")
-    store = session.get("store")
+    address = session.get("address")
     email = session.get("email")
     mobile = session.get("mobile")
     username = session.get("username")
 
-    return name,store,email,mobile,username
+    return name,address,email,mobile,username
 
 @app.route("/")
 def home():
@@ -107,7 +109,7 @@ def log():
 def sign():
     if request.method == "POST":
         session["name"] = name = request.form.get("name")
-        session["store"] = store = request.form.get("store")
+        session["address"] = store = request.form.get("address")
         session["email"] = email = request.form.get("email")
         session["mobile"] = mobile = request.form.get("mobile")
         session["username"] = username = request.form.get("username")
@@ -127,18 +129,30 @@ def wel():
         selected_books = request.form.getlist("books")
         session["books"] = selected_books 
         session["cost"] = len(selected_books) * 500
-        return redirect("/buy")
+        return redirect(url_for("cart"))
     return render_template("home.html",name=name,store=store,email=email,username=username)
 
-@app.route("/buy", methods=["POST", "GET"])
+@app.route("/yourcart", methods=["POST", "GET"])
 def cart():
-    selected_books_ = session.get("books",[])
     if request.method == "POST":
-        save_order(session.get("username"),items=selected_books_)
+        message = request.form.get("message","")
+        session["message"] = message
+        return redirect(url_for("buy"))
+    selected_books_ = session.get("books",[])
     cost = session.get("cost",0)
     cost_ = len(selected_books_)*500
     session["cost"] = cost_
     return render_template("complete_order.html",selected_books=selected_books_, cost = cost_ )
+
+@app.route("/placed", methods=["GET", "POST"])
+def buy():
+    selected_books_ = session.get("books", [])
+    cost_ = session.get("cost")
+    address_ = session.get("address")
+    username = session.get("username")
+    message = session.get("message", "")
+    save_order(username, items=selected_books_, message=message)
+    return render_template("placed.html", cost=cost_, address=address_, username=username)
 if __name__ == "__main__":
     initialize_buyerdb()
     initialize_orderdb()
