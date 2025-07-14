@@ -15,8 +15,11 @@ def show():
     
 @app.route("/Iknow")
 def yes():
-    return render_template("i_knew_it.html",message="Toh first message kardke mere baare mee puch lee yaar pls... 🙂")
+    return render_template("i_knew_it.html",message="then, just upvote bro... 🙂")
 
 @app.route("/chalna")
 def no():
     return render_template("index.html",message="Enter again", no=True)
+
+if __name__ == "__main__":
+    app.run(debug=True)
